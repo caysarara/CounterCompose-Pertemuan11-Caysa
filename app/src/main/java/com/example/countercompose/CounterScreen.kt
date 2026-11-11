@@ -23,6 +23,7 @@ import com.example.countercompose.ui.theme.CounterComposeTheme
 
 @Composable
 fun CounterApp(
+    onNext: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CounterViewModel = viewModel()
 ) {
