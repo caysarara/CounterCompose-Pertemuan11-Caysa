@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CounterComposeTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CounterScreen(
+                    CounterApp(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -29,11 +29,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun CounterScreenPreview() {
+fun CounterScreenView() {
     CounterComposeTheme {
-        CounterScreen()
+        CounterScreen(
+            counter = 7,
+            onIncrement = {},
+            onDecrement = {},
+            onReset = {}
+        )
     }
 }
