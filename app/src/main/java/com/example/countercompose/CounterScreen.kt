@@ -33,13 +33,12 @@ fun CounterApp(
         onIncrement = { viewModel.increment() },
         onDecrement = { viewModel.decrement() },
         onReset = { viewModel.reset() },
+        onNext = onNext,
         modifier = modifier
     )
 }
 @Composable
-fun CounterScreen(counter: Int, onIncrement: () -> Unit, onDecrement: () -> Unit, onReset: () -> Unit, modifier: Modifier = Modifier) {
-
-    var counter by rememberSaveable { mutableIntStateOf(0) }
+fun CounterScreen(counter: Int, onIncrement: () -> Unit, onDecrement: () -> Unit, onReset: () -> Unit, onNext: () -> Unit = {}, modifier: Modifier = Modifier) {
 
     Column(
         modifier = modifier
@@ -67,7 +66,8 @@ fun CounterScreen(counter: Int, onIncrement: () -> Unit, onDecrement: () -> Unit
         CounterButtons(
             onDecrement = onDecrement,
             onIncrement = onIncrement,
-            onReset = onReset
+            onReset = onReset,
+            onNext = onNext
         )
     }
 }
@@ -103,7 +103,8 @@ fun CounterDisplay(value: Int, modifier: Modifier = Modifier) {
 fun CounterButtons(
     onDecrement: () -> Unit = {},
     onIncrement: () -> Unit = {},
-    onReset: () -> Unit = {}
+    onReset: () -> Unit = {},
+    onNext: () -> Unit = {}
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Row(
@@ -157,6 +158,15 @@ fun CounterButtons(
             )
             Spacer(Modifier.width(ButtonDefaults.IconSpacing))
             Text("RESET")
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(
+            onClick = onNext,
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF9C27B0))
+        ) {
+            Text("NEXT")
         }
     }
 }
